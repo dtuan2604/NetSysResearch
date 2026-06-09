@@ -1,0 +1,4 @@
+variant,parallel_connections,iteration,throughput_mbps,latency_ms
+baseline,1,1,,
+ryu_simpleswitch,1,1,,
+homesnitch,1,1,,

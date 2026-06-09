@@ -1,0 +1,2 @@
+start_time,end_time,device_ip,vendor,model,activity,pcap_name,notes
+2018-04-13T10:00:00Z,2018-04-13T10:00:30Z,192.168.1.10,Ring,Doorbell,MotionUpload,2018-04-13.pcap,Replace with timestamped ground truth
