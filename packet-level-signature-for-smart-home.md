@@ -69,3 +69,6 @@ Their ML-based referenced paper (looking up assisted by ChatGPT), the paper prio
 - **Priority**: <span style="background:#faad14;color:black;padding:2px 8px;border-radius:4px;font-weight:600;">Medium Relevance</span>
 - **Focus**: Represents Tor traffic traces as packet-direction/sequence patterns and attacks website-fingerprinting defenses such as WTF-PAD and Walkie-Talkie.
 - **ML Usage**: Uses a CNN architecture to learn fingerprints automatically; reports >98% accuracy on undefended Tor traffic and >90% against WTF-PAD.
+
+### [PrivacyGuard: Enhancing Smart Home User Privacy](https://dl.acm.org/doi/10.1145/3412382.3458257)
+- **Priority**: <span style="background:#ff4d4f;color:white;padding:2px 8px;border-radius:4px;font-weight:600;">High Relevance</span>
