@@ -51,6 +51,10 @@
     - How do we define a **vendor**?
     - Turning on promicious mode, we can see source MAC address, destination MAC address, data size. Would that be sufficient for a ML threat model?
         - Most pcap file only lists packets constructed with Ethernet layer, not 802.11. Some does, but with different channels, i.e: 802.1Q Virtual LAN.
+- Brainstorming:
+    - What if we can add **network-card-vendor** as a feature assisting the vendor prediction? Why?
+        - Some vendors produce their own network card -> strong correlation
+        - Some vendors use third party network card + firmware (either from the chip manufacturer or the vendors) + software (vendors) -> One network card manufacturer works with a limited amount of IoT device manufacturer, which means we can narrow down the search space, and then *potentially* use ML on network traffic and pattern to figure out if this device belongs to a specific vendor?
 
 ## References
 - [Leveraging MAC Address Logic for IoT Classification ](https://www.catonetworks.com/blog/leveraging-mac-address-logic-for-iot-classification/)
