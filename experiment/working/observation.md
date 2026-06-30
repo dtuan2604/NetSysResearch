@@ -29,9 +29,29 @@
 - Based on my observation, it is very likely that the OUI can be used to uniquely identify *\<device, vendor\>* tuple
 - Occasionally, some of different devices belong to the same vendor also share OUI tuple
 - However, there are also edge cases where devices belongs to the same vendor, even the same type, have different OUI. 
-- <mark>TO-DO</marj>:
+- <mark>TO-DO</mark>:
     - Research to see if OUI can be used to uniquely identify *\<device, vendor\>*
     - On layer 2, we can only see MAC address, probably try ML on packet length, direction, potentially inter-arrival time if we can use that to identify anything
 
 ## References
 - [What is MAC Address?](https://www.geeksforgeeks.org/computer-networks/mac-address-in-computer-network/)
+
+# June 29th, 2026
+- We might be able to use MAC prefixes to trace back to the network card manufacturer. We might be able to identify the device type and vendor with MAC prefixes but there is no guarantee.
+- Download OUI mapping and checking now: [IEEE OUI Database](https://standards-oui.ieee.org/)
+- Result:<br/>
+![Vendor mapping using IEEE list](imgs/screenshots/oui-mapping.png)
+
+- Observation:
+    - Some manufacturers produce their own network card and register it under their name, while some uses third-party manufacturer.
+    - Some manufacturers sign up for multiple entries. i.e: Amazon
+- Conclusion:
+    - We for sure will be able to identify **network-card-vendor**
+- Question:
+    - How do we define a **vendor**?
+    - Turning on promicious mode, we can see source MAC address, destination MAC address, data size. Would that be sufficient for a ML threat model?
+        - Most pcap file only lists packets constructed with Ethernet layer, not 802.11. Some does, but with different channels, i.e: 802.1Q Virtual LAN.
+
+## References
+- [Leveraging MAC Address Logic for IoT Classification ](https://www.catonetworks.com/blog/leveraging-mac-address-logic-for-iot-classification/)
+- [OUI Database](https://standards-oui.ieee.org/)
