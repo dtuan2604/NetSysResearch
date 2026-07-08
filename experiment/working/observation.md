@@ -59,3 +59,20 @@
 ## References
 - [Leveraging MAC Address Logic for IoT Classification ](https://www.catonetworks.com/blog/leveraging-mac-address-logic-for-iot-classification/)
 - [OUI Database](https://standards-oui.ieee.org/)
+
+# June 30th, 2026
+- Keep investigating if the monitor mode can give more information on other layers.
+- Running monitor mode and watch a video from the phone to verify if the device is usuable
+
+# July 1st, 2026
+- Found one problem, I was listening on 2.4Ghz channel, which is why I can't listen to the traffic between my phone and the router
+- What I did:
+    - Run `sudo wdutil info` to figure out the **channel** and the **radio width**
+    - Use **Wireless Diagnostic** and configure the **Sniffer** to listen on the above channel and radio width
+    - The captured traffic will be exported to `/var/tmp`
+- After doing that, I was able to capture all traffic between all devices on my LAN network.
+
+# July 2nd, 2026
+- One new issue, what's about multiple devices connecting through a hub?
+
+# July 6th, 2026

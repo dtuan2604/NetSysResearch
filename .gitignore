@@ -1,3 +1,4 @@
 dataset/
 dataset-backup/
 exported_models/
+.vscode/
