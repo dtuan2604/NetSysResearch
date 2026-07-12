@@ -25,5 +25,5 @@ def create_under_sampler(random_seed: int = 42) -> RandomUnderSampler:
     """
     return RandomUnderSampler(random_state=random_seed)
 
-sampling_strategies = [("SMOTE", create_SMOTE_sampler), ("RandomUnderSampler", create_under_sampler)]
+sampling_strategies = [("RandomUnderSampler", create_under_sampler), ("SMOTE", create_SMOTE_sampler)]
     

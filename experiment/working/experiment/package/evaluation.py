@@ -1,5 +1,5 @@
-from experiment.working.experiment.package.sampling import sampling_strategies
-from experiment.working.experiment.package.models import models
+from .sampling import sampling_strategies
+from .models import models
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score

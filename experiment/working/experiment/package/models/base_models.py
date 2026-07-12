@@ -8,7 +8,7 @@ def create_logistic_regression(random_seed: int = 42) -> LogisticRegression:
         solver="saga",
         max_iter=5000,
         random_state=random_seed,
-        # n_jobs=n_jobs
+        n_jobs=-1
     )
 
 def create_knn() -> KNeighborsClassifier:
@@ -19,7 +19,7 @@ def create_knn() -> KNeighborsClassifier:
         leaf_size=30,
         metric="minkowski",
         p=2,                 # Minkowski p=2 = Euclidean distance
-        # n_jobs=n_jobs,
+        n_jobs=-1,
     )
 
 def create_decision_tree(random_seed: int = 42) -> DecisionTreeClassifier:
@@ -58,13 +58,13 @@ def create_random_forest(random_seed: int = 42) -> RandomForestClassifier:
         oob_score=False,
         class_weight=None,
         random_state=random_seed,
-        # n_jobs=n_jobs,
+        n_jobs=-1,
     )
 
 
 models = [
-    ("KNN", create_knn),
+    # ("KNN", create_knn),
     ("DecisionTree", create_decision_tree),
     ("RandomForest", create_random_forest),
-    ("LogisticRegression", create_logistic_regression),
+    # ("LogisticRegression", create_logistic_regression),
 ]
