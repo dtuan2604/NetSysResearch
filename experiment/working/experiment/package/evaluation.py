@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from .sampling import sampling_strategies
 from .models import models
 from sklearn.model_selection import StratifiedKFold
@@ -27,22 +29,25 @@ def evaluate(y_pred: pd.DataFrame, y_true: pd.DataFrame, labels: NDArray) -> Dic
 
 def training_and_evaluation(X: pd.DataFrame, y: pd.DataFrame, average_metric_plotting: bool = False) -> pd.DataFrame:
     stratifiedKFold = StratifiedKFold(n_splits=KFOLD)
-    training_and_validation_indices = []
-    for train_indices, val_indices in stratifiedKFold.split(X=X, y=y):
-        training_and_validation_indices.append([train_indices, val_indices])
+    training_and_validation_set = defaultdict(list)
+    for sample_method, create_sampler in sampling_strategies:
+        for train_indices, val_indices in stratifiedKFold.split(X=X, y=y):
+            X_train, y_train = X.iloc[train_indices].reset_index(drop=True), y.iloc[train_indices].reset_index(drop=True)
+            X_val, y_val = X.iloc[val_indices].reset_index(drop=True), y.iloc[val_indices].reset_index(drop=True)
+            sampler = create_sampler()
+
+            X_sample, y_sample = sampler.fit_resample(X_train, y_train)
+            training_and_validation_set[sample_method].append((X_sample, y_sample, X_val, y_val))
     
     print(f"Training and evaluating with:\nFeatures: {X.columns.to_list()}\nLabel: {np.unique(y)}")
 
     metrics = []
-    for sample_method, create_sampler in sampling_strategies:
+    for sample_method in training_and_validation_set:
         for model_name, create_model in models:
             print(f"\tStart KStratifiedKFold (k={KFOLD}) for: model={model_name}, sample_method={sample_method}, scaler=StandardScaler")
-            for iteration, (train_indices, val_indices) in enumerate(training_and_validation_indices):
-                X_train, y_train = X.iloc[train_indices].reset_index(drop=True), y.iloc[train_indices].reset_index(drop=True)
-                X_val, y_val = X.iloc[val_indices].reset_index(drop=True), y.iloc[val_indices].reset_index(drop=True)
+            for iteration, (X_sample, y_sample, X_val, y_val) in enumerate(training_and_validation_set[sample_method]):
                 labels = np.unique(y_val)
 
-                sampler = create_sampler()
                 scaler = StandardScaler()
                 model = create_model()
 

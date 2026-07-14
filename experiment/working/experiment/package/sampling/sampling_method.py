@@ -11,7 +11,7 @@ def create_SMOTE_sampler(random_seed: int = 42) -> SMOTE:
     Returns:
         SMOTE: An instance of the SMOTE sampler.
     """
-    return SMOTE(random_state=random_seed)
+    return SMOTE(random_state=random_seed, k_neighbors=3)
 
 def create_under_sampler(random_seed: int = 42) -> RandomUnderSampler:
     """

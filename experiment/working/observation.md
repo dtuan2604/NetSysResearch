@@ -75,4 +75,19 @@
 # July 2nd, 2026
 - One new issue, what's about multiple devices connecting through a hub?
 
-# July 6th, 2026
+# July 13th, 2026
+- Phase 1 probably doesn't need a comprehensive set of features, simple aggregated feature. Based on my observation, longer aggregated window (1 second < 5 seconds) has higher accuracy of predicting a device to be a IoT devices vs non-IoT devices. 
+- The same thing can be said for Phase 2.1 where I am trying to identify a device from network trace. I am trying to use distribution properties from each device to observe the pattern. Therefore, the feature I have selected are packet count, total frame length, mean frame length, frame length standard deviation, different quantile packet distribution (25%, 50%, 75%, 95%)
+    - The first window size I selected was 1 second and it took a lot of time to run the training. Mostly because the window size is too small which increase the size of the dataset to roughly 20+ millions record. The training is also running KNN and SMOTE which even take longer time. However, the result was not really good. Even taking the longest time, KNN doesn't seem to perform well compared to the other algorithm so I drop it off.
+    - The second window size I tried was 10 seconds window. The accuracy does increase to roughly 81%++ and it is pretty consistent across all stratified K fold. Looking into the [performance](./experiment/second_experiment_results_10_window_second.csv), it seems to perform really well on `baby monitor`, `blood pressure monitor`, `camera`,`sleep sensor`, `smart scale`, `smart speaker`,`smoke alarm`, `weather station`. Bad on `motion sensor`, `printer`, `smart bulb`, `smart switch`.
+        - The reason might be that those devices which has good result seems to have a unique distribution or they generates a lot of traffic which overwhelms the training set
+    - The last window size I tried was 300 seconds window which gave me a really high average accuracy. The precision, recall, and f1 across all devices monitor are pretty good. However, this is very likely a result of imbalance dataset. Some sample only have 4 records (baby monitor) since the window is too large
+    - <mark>Question from this observation:</mark>
+        - Should we have a limit on how many device types we are interested in classifying?
+        - I would say the longer the window is, the better the distribution is for the classifier to learn the pattern. However, we can just keep extending the monitoring window. When should we stop?
+        - I know that we discussed that we might not need to classify the vendor. How should we model the event happening? Cuz event might varies across different vendors with the same devices. 
+- I have tried adding cumulative density function (CDF) on packet length, but it doesn't seem to contribute much since the number of labels are still too much on the phase 2. 
+- <mark>Question:</mark> Another question popping up in my mind, we have two options to calculate our rolling window:
+    - Fixed window: we don't care when the devices start sending packet, the window keeps rolling in a fixed period of time. This would mean that a event belongs to a device might have different distribution. For example: imagine the communication between a IoT device and cloud service last for 3 seconds. If our window is 1 second, then we would record 3 different distribution window from the record. Would that help?
+    - Relative window: we start the window when the device start sending messages. If we are using this window, then what is the difference between this approach and signature generation approach (while the signature generation would likely require less computation)?
+    
