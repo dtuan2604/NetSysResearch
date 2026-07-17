@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+import time
 from .sampling import sampling_strategies
 from .models import models
 from sklearn.model_selection import StratifiedKFold
@@ -51,11 +51,12 @@ def training_and_evaluation(X: pd.DataFrame, y: pd.DataFrame, average_metric_plo
                 scaler = StandardScaler()
                 model = create_model()
 
-                X_sample, y_sample = sampler.fit_resample(X_train, y_train)
                 X_sample_scaled = scaler.fit_transform(X_sample)
                 X_val_scaled = scaler.transform(X_val)
 
+                startTime = time.perf_counter()
                 model.fit(X_sample_scaled, y_sample)
+                endTime = time.perf_counter()
 
                 y_val_pred = model.predict(X_val_scaled)
 
@@ -64,6 +65,7 @@ def training_and_evaluation(X: pd.DataFrame, y: pd.DataFrame, average_metric_plo
                 metric_dict["sample_method"] = sample_method
                 metric_dict["iteration"] = iteration
                 metric_dict["labels"] = labels
+                metric_dict["train_time"] = endTime - startTime
                 metrics.append(metric_dict)
 
     return pd.DataFrame(metrics)
