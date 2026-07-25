@@ -91,3 +91,8 @@
     - Fixed window: we don't care when the devices start sending packet, the window keeps rolling in a fixed period of time. This would mean that a event belongs to a device might have different distribution. For example: imagine the communication between a IoT device and cloud service last for 3 seconds. If our window is 1 second, then we would record 3 different distribution window from the record. Would that help?
     - Relative window: we start the window when the device start sending messages. If we are using this window, then what is the difference between this approach and signature generation approach (while the signature generation would likely require less computation)?
     
+# July 21st, 2026
+- Fine-tuning the accuracy
+- Try different features
+- Do step 2 or step 3
+- Defining accuracy metric to identify k device types
