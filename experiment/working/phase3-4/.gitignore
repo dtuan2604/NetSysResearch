@@ -1,0 +1,6 @@
+derived/
+artifacts/models/
+artifacts/figures/
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
