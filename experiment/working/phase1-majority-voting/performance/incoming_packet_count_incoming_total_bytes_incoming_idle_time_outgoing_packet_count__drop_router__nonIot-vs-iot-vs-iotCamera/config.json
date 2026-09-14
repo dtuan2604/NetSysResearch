@@ -1,0 +1,15 @@
+{
+    "feature_combination": [
+        "incoming_packet_count",
+        "incoming_total_bytes",
+        "incoming_idle_time",
+        "outgoing_packet_count"
+    ],
+    "dropping_strategy": "drop_router",
+    "labeling_strategy": "nonIot-vs-iot-vs-iotCamera",
+    "class_labels": [
+        1,
+        2,
+        3
+    ]
+}
