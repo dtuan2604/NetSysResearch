@@ -1,0 +1,14 @@
+{
+    "feature_combination": [
+        "outgoing_total_bytes",
+        "outgoing_idle_time"
+    ],
+    "dropping_strategy": "no_dropping",
+    "labeling_strategy": "nonIot-vs-iot-vs-iotHealthCare-vs-iotCamera",
+    "class_labels": [
+        1,
+        2,
+        3,
+        4
+    ]
+}

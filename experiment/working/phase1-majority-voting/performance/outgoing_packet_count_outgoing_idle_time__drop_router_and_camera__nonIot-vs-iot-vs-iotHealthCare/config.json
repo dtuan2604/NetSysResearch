@@ -1,0 +1,13 @@
+{
+    "feature_combination": [
+        "outgoing_packet_count",
+        "outgoing_idle_time"
+    ],
+    "dropping_strategy": "drop_router_and_camera",
+    "labeling_strategy": "nonIot-vs-iot-vs-iotHealthCare",
+    "class_labels": [
+        1,
+        2,
+        3
+    ]
+}
