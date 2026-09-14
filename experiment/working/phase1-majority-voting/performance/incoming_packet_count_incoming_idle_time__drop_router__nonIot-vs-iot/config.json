@@ -1,0 +1,12 @@
+{
+    "feature_combination": [
+        "incoming_packet_count",
+        "incoming_idle_time"
+    ],
+    "dropping_strategy": "drop_router",
+    "labeling_strategy": "nonIot-vs-iot",
+    "class_labels": [
+        0,
+        1
+    ]
+}
