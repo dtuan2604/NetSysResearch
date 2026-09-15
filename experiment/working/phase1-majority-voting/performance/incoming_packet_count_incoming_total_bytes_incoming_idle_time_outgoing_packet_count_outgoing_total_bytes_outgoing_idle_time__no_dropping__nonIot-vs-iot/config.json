@@ -12,5 +12,7 @@
     "class_labels": [
         0,
         1
-    ]
+    ],
+    "feature_set": "incoming_data_and_out_going_data",
+    "average_across_all_windows": 0.966714285714286
 }

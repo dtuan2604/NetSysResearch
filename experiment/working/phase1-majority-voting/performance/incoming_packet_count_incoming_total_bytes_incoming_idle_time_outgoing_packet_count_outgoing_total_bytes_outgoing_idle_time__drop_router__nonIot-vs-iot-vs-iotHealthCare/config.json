@@ -13,5 +13,7 @@
         1,
         2,
         3
-    ]
+    ],
+    "feature_set": "incoming_data_and_out_going_data",
+    "average_across_all_windows": 0.9564444444444443
 }

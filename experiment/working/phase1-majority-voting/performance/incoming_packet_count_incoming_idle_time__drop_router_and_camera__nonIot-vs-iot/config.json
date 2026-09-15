@@ -8,5 +8,7 @@
     "class_labels": [
         0,
         1
-    ]
+    ],
+    "feature_set": "incoming_data",
+    "average_across_all_windows": 0.9201818181818183
 }
