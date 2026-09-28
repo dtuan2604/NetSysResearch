@@ -4,3 +4,4 @@ exported_models/
 .vscode/
 experiment/working/phase1-majority-voting/dataset1/all_traffic.parquet
 experiment/working/phase1-majority-voting/feature-by-window-size
+**/*-feature-window/

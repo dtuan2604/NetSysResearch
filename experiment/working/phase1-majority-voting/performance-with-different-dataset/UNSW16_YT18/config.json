@@ -1,0 +1,17 @@
+{
+    "feature_combination": [
+        "outgoing_packet_count",
+        "outgoing_total_bytes",
+        "incoming_packet_count",
+        "incoming_total_bytes",
+        "aggregated_packet_count",
+        "aggregated_total_bytes",
+        "idle_time"
+    ],
+    "dropping_strategy": "no_dropping",
+    "labeling_strategy": "nonIot-vs-iot",
+    "class_labels": [
+        0,
+        1
+    ]
+}
