@@ -5,3 +5,5 @@ exported_models/
 experiment/working/phase1-majority-voting/dataset1/all_traffic.parquet
 experiment/working/phase1-majority-voting/feature-by-window-size
 **/*-feature-window/
+travel-grant/
+**/.*_tmp
